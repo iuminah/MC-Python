@@ -1,9 +1,13 @@
 import re
 import datetime
 
-input = input("Nhập ngày theo định dạng (dd/mm/yyyy) : ")
+print("Nhập ngày theo định dạng (dd/mm/yyyy) : ")
+
+# input = input()
+input = "29/08/2023"
 
 parterm = re.match(r"\d{2}/\d{2}/\d{4}", input)
+checkInput = bool(parterm)
 
 listStr = input.split("/")
 
@@ -11,6 +15,17 @@ listInt = []
 
 for i in listStr:
   listInt.append(int(i))
+
+
+def sumOfString():
+  list = []
+  for x in input:
+    if x == "/":
+      pass
+    else:
+      list.append(int(x))
+  print(list)
+      
 
 
 def newFormatString(str):
@@ -40,4 +55,8 @@ def getWeekDay(input):
 # newFormatString(listStr)
 # splitDayMonthYear(listStr)
 
-getWeekDay(listInt)
+if checkInput:
+  getWeekDay(listInt)
+  sumOfString()
+else:
+  print("Định dạng ngày không hợp lệ")
