@@ -16,7 +16,7 @@ def checkParterm(str):
 listStr = day1.split("/")
 
 def newFormatString():
-  res = currentDate.strftime("%Y-%m/%d")
+  res = currentDate.strftime("%Y-%m-%d")
   print(f'1/ Kết quả in ra màn hình là: "{res}"')
 
 def next90day():
@@ -59,7 +59,7 @@ def getWeekDay(str):
 
 def distance2days():
   res = (diffDay - currentDate).days
-  print(f'8/ Khoảng cách giữa ngày {day1} và ngày {day2} là: {abs(res)} ngày')
+  print(f'8/ Khoảng cách giữa ngày "{day1}" và ngày "{day2}" là: {abs(res)} ngày')
 
 def sumOfString(str):
   arr = []
