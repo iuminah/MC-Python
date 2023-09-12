@@ -1,6 +1,5 @@
-from ulti import checkContinue, getRange, checkParterm, isLeapYear
-from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
+from ulti import checkContinue, getRange, checkParterm, isLeapYear, showListProgram, formatCurrency, rerunProgram
+from datetime import datetime
 
 
 def findNumbersWithConditional():
@@ -59,6 +58,7 @@ def caclAge():
     curentYear = int(datetime.now().strftime("%Y"))
     inputDob = input(
         "Nhập ngày, tháng, năm sinh theo định dạng (yyyy/mm/dd) : ")
+
     userDob = int(inputDob[:4])
 
     validateInput = checkParterm(inputDob)
@@ -68,34 +68,58 @@ def caclAge():
         print(f"3./ Tuổi của người này là : {age}", end=". ")
         isLeapYear(userDob)
     else:
-        check = input(
-            "!-- Chưa nhập đúng định dạng, Bạn muốn thử lại không (y/n) : ")
-        if check == "y" or check == "Y":
-            caclAge()
+        rerunProgram(caclAge)
 
 
 def sortAlphabet():
     inputString = input("Nhập một chuỗi các từ tách biệt bởi khoảng trắng : ")
+    inputlist = inputString.split()
+    res = list(set(inputlist))
+    res.sort()
 
-    arrString = ["dab, bc, ab, ab"]
+    print(f"4./ Các từ sau khi loại bỏ trùng lặp và sắp xếp lại : {res}")
 
-    arrString.sort()
 
-    print(arrString)
+def findEvenNumber():
+
+    start, end = getRange()
+    arr = list(range(start, end + 1))
+
+    res = []
+    for i in arr:
+        if i % 2 == 0:
+            res.append(i)
+    print(f'5./ Các số chẵn trong đoạn "{start}" và "{end}" là : {res}')
+    print(f"Tổng số : {len(res)}")
+
+
+def calcSalary():
+    workingHours = input("Nhập số giờ làm mỗi tuần : ")
+    criteriaSalary = input("Nhập thù lao trên mỗi giờ tiêu chuẩn : ")
+    criteriaHours = 40
+
+    if type(float(workingHours)) is float and type(float(criteriaSalary)) is float:
+        salaryOT = float(criteriaSalary) * 1.5
+        hoursOT = float(workingHours) - 40
+        netIncome = float(criteriaSalary) * float(workingHours)
+
+        if hoursOT > 0:
+            incomeWithOT = (float(criteriaSalary) * criteriaHours) + \
+                (hoursOT * salaryOT)
+            formatCurrency(incomeWithOT)
+        else:
+            formatCurrency(netIncome)
+    else:
+        rerunProgram(calcSalary)
 
 
 def allProgram():
     findNumbersWithConditional()
     findMuliples()
     caclAge()
-    # sortAlphabet()
-
-
-def showListProgram():
-    print("1 : Tìm tất cả các số chia hết cho 7 nhưng không phải bội số của 5, nằm trong đoạn")
-    print("2 : Tạo ra 1 chuỗi là bội số của chúng và in ra kết quả dạng list")
-    print("3 : Tính tuổi từ ngày tháng năm sinh và cho biết năm sinh có phải năm nhuận không")
-    print("0 : Chạy lần lượt từng chương trình")
+    sortAlphabet()
+    findEvenNumber()
+    calcSalary()
 
 
 def selectProgram(selected):
@@ -103,18 +127,28 @@ def selectProgram(selected):
         1: findNumbersWithConditional,
         2: findMuliples,
         3: caclAge,
+        4: sortAlphabet,
+        5: findEvenNumber,
+        6: calcSalary,
         0: allProgram
     }
-    switcher.get((selected), lambda: print("Done"))()
+
+    switcher.get(int(selected), lambda: print("Chưa có chương trình này."))()
 
     rerun = input("Bạn có muốn chạy chương trình khác không (y/n) : ")
     if rerun == "y" or rerun == "Y":
-        selectAgain = int(input("Chọn chương trình bạn muốn chạy : "))
         showListProgram()
+        selectAgain = int(input("Chọn chương trình bạn muốn chạy : "))
         selectProgram(selectAgain)
 
 
-if __name__ == "__main__":
+def runFile():
     showListProgram()
-    selected = int(input("Chọn chương trình bạn muốn chạy : "))
-    selectProgram(selected)
+    selected = input("Chọn chương trình bạn muốn chạy : ")
+    if type(int(selected)) is int:
+        selectProgram(selected)
+    else:
+        rerunProgram(runFile)
+
+
+runFile()
