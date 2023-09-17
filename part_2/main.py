@@ -1,4 +1,4 @@
-from ulti import checkContinue, getRange, checkParterm, isLeapYear, showListProgram, formatCurrency, rerunProgram
+from ulti import showListProgram, rerunProgram
 from ex1 import findNumbersWithConditional
 from ex2 import findMuliples
 from ex3 import caclAge
