@@ -2,8 +2,8 @@ from ulti import formatCurrency, rerunProgram
 
 
 def calcSalary():
-    workedHours = input("Nhập số giờ làm mỗi tuần : ")
-    criteriaSalary = input("Nhập thù lao trên mỗi giờ tiêu chuẩn : ")
+    workedHours = float(input("Nhập số giờ làm mỗi tuần : "))
+    criteriaSalary = float(input("Nhập thù lao trên mỗi giờ tiêu chuẩn : "))
     criteriaHours = 40
 
     if type(workedHours) == float and type(criteriaSalary) == float:

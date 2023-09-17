@@ -20,6 +20,5 @@ def findMuliples():
         for i in customRange:
             obj[i] = i*i
         print(
-            f"2./ Có 1 chuỗi từ {startValue} đến {endValue} tạo ra 1 chuỗi là bội số của chúng là :"
+            f"2./ Có 1 chuỗi từ {startValue} đến {endValue} tạo ra 1 chuỗi là bội số của chúng là : {obj}"
         )
-        print(obj)
