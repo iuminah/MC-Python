@@ -1,6 +1,6 @@
 from ulti import showListProgram, rerunProgram
 from ex1 import findNumbersWithConditional
-from ex2 import findMuliples
+from ex2 import findMuliples    
 from ex3 import caclAge
 from ex4 import sortAlphabet
 from ex5 import findEvenNumber
@@ -41,7 +41,7 @@ def selectProgram(selected):
 def runFile():
     showListProgram()
     selected = input("Chọn chương trình bạn muốn chạy : ")
-    if type(int(selected)) == int:
+    if type(selected) == int:
         selectProgram(selected)
     else:
         rerunProgram(runFile)
